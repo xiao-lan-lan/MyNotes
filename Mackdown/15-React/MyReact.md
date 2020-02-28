@@ -1,6 +1,6 @@
 # React
 
-## 0.与vue对比
+## 与vue对比
 
 |            /            |                             Vue                              |                            React                             |
 | :---------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
@@ -34,7 +34,7 @@
 |        状态管理         |                             vuex                             |                         react-redux                          |
 |        修改状态         |                        使用 mutations                        |                      使用reducer纯函数                       |
 
-## 1.安装
+## 安装
 
 1. CDN
 
@@ -53,7 +53,7 @@
    npm start
    ```
 
-## 2.JSX
+## JSX
 
 1. 建议在 React 中配合使用 JSX，JSX 可以很好地描述 UI 
 
@@ -86,12 +86,12 @@
 
 ￼![1582446420208](assets/1582446420208.png)
 
-## 3.元素渲染
+## 元素渲染
 
 1. React 元素是[不可变对象](https://en.wikipedia.org/wiki/Immutable_object)。一旦被创建，你就无法更改它的子元素或者属性，除非重新调用 `ReactDOM.render()` 重新渲染
 2. React DOM 会将元素和它的子元素与它们之前的状态进行比较，并只会进行必要的更新来使 DOM 达到预期的状态。
 
-## 4.组件------>.vue
+## 组件------>.vue
 
 ### 函数组件
 
@@ -127,7 +127,7 @@ function Welcome(props) {
 3. 定义类名是在组件的 html 标签上定义，并非组件标签上，className="类名"
 4. 定义在组件标签上的属性值，函数组件用默认形参 props 拿，类组件用 this.props 拿
 
-## 5.state------>data
+## state------>data
 
 有状态组件（容器组件）：类组件，主要用来定义交互逻辑和业务数据
 
@@ -163,15 +163,13 @@ this.state.数据名
 
 ### 修改状态数据
 
-	1. 传入对象
- 	2. 传入函数
-
+1. 传入对象
 ```js
 this.setState({
   state数据名：新值
 })
 ```
-
+2. 传入函数
 ```js
 this.setState(()=>{
     return {
@@ -193,7 +191,7 @@ this.setState(()=>{
 2. 该数据是否随时间的推移而保持不变？如果是，那它应该也不是 state。
 3. 你能否根据其他 state 或 props 计算出该数据的值？如果是，那它也不是 state。
 
-## 6.生命周期
+## 生命周期
 
 1. 创建时
 
@@ -215,7 +213,7 @@ this.setState(()=>{
 
 ![1582446468703](assets/1582446468703.png)
 
-## 7.事件处理
+## 事件处理
 
 ### 语法:
 
@@ -319,7 +317,7 @@ class LoggingButton extends React.Component {
 
 2. 传实参？？？？？？？
 
-## 8.条件渲染
+## 条件渲染
 
 1. If 判断：根据表达式的值来决定渲染哪个组件
 
@@ -368,7 +366,7 @@ render() {
 
 4. 阻止组件渲染：return null；在组件的 `render` 方法中返回 `null` 并不会影响组件的生命周期
 
-## 9.列表渲染&key
+## 列表渲染&key
 
 1. 用数组的 map 方法，遍历返回一个由 JSX组成的新数组
 
@@ -396,9 +394,9 @@ const listItems = numbers.map((number) =>
    );
    ```
 
-## 10.表单
+## 表单
 
-#### 受控组件
+### 受控组件
 
 1. 在表单元素上设置了 `value` 属性，因此显示的值将始终为 `this.state.value`，由于 `handlechange` 在每次按键时都会执行并更新 React 的 state，因此显示的值将随着用户输入而更新。
 2. 即：1. 设置value值，value由state控制，2. value值一般在onChange事件中通过setState进行修改
@@ -413,7 +411,7 @@ const listItems = numbers.map((number) =>
 
    ![1582446490267](assets/1582446490267.png)
 
-#### 非受控组件
+### 非受控组件
 
 **定义**：借助于 ref，使⽤原⽣ DOM ⽅式来获取表单元素值；ref 的作⽤：获取 DOM 或组件实例
 
@@ -497,7 +495,7 @@ class FileInput extends React.Component {
 
 
 
-## 11.状态提升
+## 状态提升
 
 **自我理解**：组件的状态数据是单独互不影响的，如果需要影响其他组件，则需要将状态数据提升至最近的父组件，再进行向下传值
 
@@ -570,7 +568,7 @@ class FileInput extends React.Component {
      }
    ```
 
-## 12.组件传值
+## 组件传值
 
 ### 父传子：props
 
@@ -644,7 +642,7 @@ class Up1 extends React.Component {
 
 **context**
 
-## 13.高级
+## 高级
 
 - <React.Fragments></React.Fragments>
   - 类似于 vue 的 template 空标签
@@ -663,15 +661,12 @@ class Up1 extends React.Component {
 
 - 组件懒加载
   - `React.lazy` 接受一个函数，这个函数内部调用 `import()` 动态导入
-  
+
   - 引入模块：`import React ,{lazy,Suspense} from 'react';`
-  
-- 加载组件：`const Form = lazy(()=>import('./表单元素'))`
-  
+
+  - 加载组件：`const Form = lazy(()=>import('./表单元素'))`
   - 使用组件标签：`<Suspense fallback={<div>Loading</div>}><Form></Form></Suspense>`
-  
-    
-  
+
 - context 跨多级传值
 
   - 1.单独文件创建 context 对象并导出
@@ -699,9 +694,9 @@ class Up1 extends React.Component {
     ```
     
   - 3.数据接收者用<context.Consumer>包裹，用函数接收 context 对象传过来的数据
-  
+
     这需要函数作为子元素这种做法。这个函数接收当前的 context 值，返回一个 React 节点
-  
+
     ```js
     import React from "react";
     import context from "./context";
@@ -825,7 +820,7 @@ class Up1 extends React.Component {
     2. 导⼊ prop-types 包
     3. 使⽤ 组件名.propTypes = {} 来给组件的props添加校验类型
     4. 校验类型通过 PropTypes 对象来指定
-  
+
     ```js
     import PropTypes from 'prop-types';
     function App(props) {
@@ -915,14 +910,14 @@ React项目的可用的路由库是`React-Router`,当然这也是官方支持的
 - react-router-dom 应用于浏览器端的路由库（单独使用包含了react-router的核心部分）
 - react-router-native 应用于native端的路由
 
-### 安装
+## 安装
 
 ```js
 yarn add react-router-dom	
 npm install react-router-dom
 ```
 
-### 路由的基本概念
+## 路由的基本概念
 
 ReactRouter中提供了以下三大组件：
 
@@ -934,7 +929,7 @@ ReactRouter中提供了以下三大组件：
 
 ![1582446518832](assets/1582446518832.png)
 
-### 使用
+## 使用
 
 **1.导包**
 
@@ -1067,20 +1062,58 @@ NavLink 组件
 </Router>
 ```
 
+**9.路由懒加载**
+
+`React.lazy() 函数` 动态引入组件
+
+`React.lazy` 接受一个函数，这个函数需要动态调用 `import()`
+
+使用之前
+
+```js
+import Home from './Home'
+```
+
+使用之后
+
+```js
+const Home = React.lazy( () => import('./Home') )
+```
+
+在 `Suspense` 组件中渲染 lazy 组件，`fallback` 属性接受任何在组件加载过程中你想展示的 React 元素。你可以将 `Suspense` 组件置于懒加载组件之上的任何位置。你甚至可以用一个 `Suspense` 组件包裹多个懒加载组件。（ loading效果 ）
+
+```js
+const OtherComponent = React.lazy(() => import('./OtherComponent'));
+const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
+
+function MyComponent() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <section>
+          <OtherComponent />
+          <AnotherComponent />
+        </section>
+      </Suspense>
+    </div>
+  );
+}
+```
+
 
 
 # Redux
 
-### 安装
+## 安装
 
-```js
+```bash
 # NPM
 npm install --save redux
 # Yarn
 yarn add redux
 ```
 
-### 使用
+## 使用
 
 ​	应用中所有的 state 都以一个对象树的形式储存在一个单一的 *store* 中。 惟一改变 state 的办法是触发 *action*，一个描述发生什么的对象。 为了描述 action 如何改变 state 树，你需要编写 *reducers*。
 
@@ -1148,7 +1181,7 @@ yarn add redux
 
 # antd
 
-### 安装
+## 安装
 
 ```js
 #npm
@@ -1157,7 +1190,7 @@ npm install antd --save
 yarn add antd
 ```
 
-### 按需加载
+## 按需加载
 
 使用 babel-plugin-import（官方推荐）
 
@@ -1174,7 +1207,7 @@ yarn add antd
 }
 ```
 
-### 国际化
+## 国际化
 
 `antd` 目前的默认文案是英文，如果需要使用其他语言，可以参考下面的方案。
 
@@ -1192,7 +1225,7 @@ return (
 );
 ```
 
-### 使用
+## 使用
 
 1. 按需引入
 
