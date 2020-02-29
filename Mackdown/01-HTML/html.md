@@ -1,20 +1,3 @@
----
- 学习目标:
-  - 了解常用浏览器
-  - 掌握WEB标准
-  - 理解标签语义化
-  - 掌握常用的排版标签
-  - 掌握常用的文本格式化图像链接等标签
-  - 掌握三种列表标签
-typora-copy-images-to: media
----
-
-
-
-## HTML 第一天目标
-
-## 能够写出基本的页面（里面包含图片、各种标签和链接）
-
 # 开发工具
 
 我们主要用的 开发工具有   chrome  、  sublime 、  photoshop
@@ -51,19 +34,7 @@ typora-copy-images-to: media
 
   其实。。。。
 
-
-
-
-
-
-
-
-
-
-
   <img src="media/node.png" />
-
-
 
 ## Photoshop(协助)
 
@@ -471,7 +442,9 @@ ctrl+鼠标单击                集体编辑
 
 为了使网页更具有语义化，我们经常会在页面中用到标题标签，HTML提供了6个等级的标题，即
 
- <h1>、<h2>、<h3>、<h4>、<h5>和<h6>
+ ```html
+<h1>、<h2>、<h3>、<h4>、<h5>和<h6>
+ ```
 
 ~~~
 标题标签语义：  作为标题使用，并且依据重要性递减
@@ -519,10 +492,6 @@ ctrl+鼠标单击                集体编辑
 
 <img src="media/sh.png" /> 
 
-
-
-
-
 ### 换行标签(熟记)
 
 单词缩写：  break   打断 ,换行
@@ -564,10 +533,6 @@ ctrl+鼠标单击                集体编辑
 <img src="media/tab.png" />
 
   b  i  s  u   只有使用 没有 强调的意思       strong   em  del   ins  语义更强烈
-
-
-
-
 
 ## 图像标签img (重点)
 
@@ -779,55 +744,9 @@ D < a src=" #show">跳转</a>
 
 “D:\web\img\logo.gif”，或完整的网络地址，例如“http://www.itcast.cn/images/logo.gif”。
 
-
-
-## 课堂一练
-
-1.**在下面结构中，哪种写法可以在index页面中有输出img.gif**
-
-![1512226080266](media/1512226080266.png)
-
-(A) <img src=”../image/img.gif” /> 		
-
-(B) <img src=”image/img.gif” /> 
-
-(C) <img src=”image../img.gif” />	
-
-(D) <img src=”img.gif/image” />
-
- 
-
-**2在下面结构中，哪种写法可以在index页面中有输出1.jpg**
-
-![1512226099480](media/1512226099480.png)
-
-(A) <img src=”../1/2/1.jpg” />		
-
-(B) <img src=”/1/2/1.jpg” />
-
-(C) <img src=”1/2/1.jpg” />	
-
-(D) <img src=”1.jpg” />
-
- 
-
-3在下面结构中哪种写法可以在index页面中有输出img.gif
-
-![1512226121609](media/1512226121609.png)
-
-(A) <img src=”demo/image/img.gif” /> 	
-
-(B) <img src=”image/img.gif” /> 
-
-(C) <img src=”image../img.gif” />	
-
-(D) <img src=”img.gif/image/demo” />
-
  
 
 # 总结
-
-  每一天都有一个主题 我们HTML第一天的主题就是 <认识标签>
 
 学HTML 之前 觉得 很神秘  
 
@@ -984,10 +903,6 @@ ctrl+鼠标左键         集体编辑
 
 # 表格 table(会使用)
 
-![img](http://zcr4.ncfstatic.com/attachment/201403/27/10/5333888008f05_thumb_670x0.jpg)
-
-
-
 存在即是合理的。  表格的现在还是较为常用的一种标签，但不是用来布局，常见处理、显示表格式数据。
 
 <img src="media/table.png" />
@@ -1103,7 +1018,7 @@ caption 标签必须紧随 table 标签之后。您只能对每个表格定义�
 
 4. 表格不要纠结于外观，那是CSS 的作用。
 
-   ​
+   
 
    **表格的学习要求：  能手写表格结构，并且能合并单元格。**
 
