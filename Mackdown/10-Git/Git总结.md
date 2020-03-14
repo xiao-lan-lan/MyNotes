@@ -168,3 +168,7 @@
 
 - 修改上一次提交
   - `git commit --amend -m "说明"`
+
+- 多人协作共同开发一个分支，避免出现要求输入Merge信息的情况
+  - `git pull origin xxx --no-edit`
+  - [参考](<https://blog.csdn.net/weixin_44061993/article/details/88977644?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task>)
