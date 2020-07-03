@@ -661,3 +661,134 @@ store.dispatch('increment')
   - 只有 mutation 中修改 state 才能反应到调试工具中
 - state 数据发生改变，视图更新
 
+## Getters
+
+> 'getters' 可以认为是 store 的计算属性
+
+- Getter 接受 state 作为其第一个参数
+
+  ```js
+  const store = new Vuex.Store({
+    state: {
+      todos: [
+        { id: 1, text: '...', done: true },
+        { id: 2, text: '...', done: false }
+      ]
+    },
+    getters: {
+      doneTodos: state => {
+        return state.todos.filter(todo => todo.done)
+      }
+    }
+  })
+  ```
+
+- 使用访问 getters
+
+  ```js
+  store.getters.doneTodos // -> [{ id: 1, text: '...', done: true }]
+  ...
+  this.$store.getters.doneTodosCount
+  ```
+
+- `mapGetters` 辅助函数
+
+  - `mapGetters` 辅助函数仅仅是将 store 中的 getter 映射到局部计算属性
+
+  ```js
+  import { mapGetters } from 'vuex'
+  
+  export default {
+    // ...
+    computed: {
+    // 使用对象展开运算符将 getter 混入 computed 对象中
+      ...mapGetters([
+        'doneTodosCount',
+        'anotherGetter',
+        // ...
+      ])
+    }
+  }
+  ```
+
+## Module
+
+- 由于使用单一状态树，应用的所有状态会集中到一个比较大的对象。当应用变得非常复杂时，store 对象就有可能变得相当臃肿。
+
+- 为了解决以上问题，Vuex 允许我们将 store 分割成**模块（module）**。每个模块拥有自己的 state、mutation、action、getter
+
+```js
+const moduleA = {
+  state: () => ({ ... }),
+  mutations: { ... },
+  actions: { ... },
+  getters: { ... }
+}
+
+const moduleB = {
+  state: () => ({ ... }),
+  mutations: { ... },
+  actions: { ... }
+}
+
+const store = new Vuex.Store({
+  modules: {
+    a: moduleA,
+    b: moduleB
+  }
+})
+
+store.state.a // -> moduleA 的状态
+store.state.b // -> moduleB 的状态
+```
+
+## 实践
+
+> 字典值
+
+### 字典值store文件
+
+```js
+import Vue from 'vue'
+import { getBaseDict } from '@/api/common' //接口
+import { DEFAULT_BASEDICT } from '@/store/mutation-types'
+
+const dict = {
+  state: {
+    baseDict: {} // 字典值数据
+  },
+  mutations: {
+    Set_DICT: ( state, dict ) => {
+      state.baseDict = dict // 设置字典值数据
+    }
+  },
+  actions: {
+    Get_DICT: ({ commit }) => {
+      return new Promise((resolve, reject) => {
+        const dict = Vue.ls.get(DEFAULT_BASEDICT) // 从本地存储获取字典值
+        if(dict) {
+          commit('Set_DICT', dict) // 本地存储有，提交mutation修改dict
+          resolve(dict)
+        }else {
+          getBaseDict() // 本地存储没有，调接口获取
+            .then( res => {
+            	const { result, dataJson } = res
+              if(result == 'OK') {
+                commit('Set_DICT', dataJson)
+                Vue.ls.set(DEFAULT_BASEDICT,dataJson) // 存到本地
+                resolve(res)
+              }else {
+                reject(res)
+              }
+          	})
+            .catch( err => {
+              reject(err)
+            })
+        }
+      })
+    }
+  }
+}
+export default dict
+```
+
