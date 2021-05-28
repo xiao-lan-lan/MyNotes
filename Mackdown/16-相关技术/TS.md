@@ -58,6 +58,10 @@ a = '1' // ok
 let arr: string[] = ['1','2','3']
 let arr1: number[] = [1, 2, 3]
 let arr2: object[] = [ { a: 1 }, { b: 1 } ]
+
+// 元组
+// 元组允许数组类型可以不一致，
+let x:[number,string]
 ```
 
 ```ts
@@ -96,7 +100,7 @@ function handleClick(event: MouseEvent) {
 }
 ```
 
-- 类型注解省略
+- 类型推断（类型注解省略）
 
 常见场景：1 声明变量并初始化时 2 决定函数返回值时
 
@@ -105,6 +109,65 @@ let age: number = 18 // => let age = 18
 function sum(num1: number, num2: number): number { return num1 + num2 } 
 // => function sum(num1: number, num2: number) { return num1 + num2 }
 ```
+
+### 泛型
+
+> 不同于使用 `any`，它不会丢失信息；不预先指定具体的类型，而在使用的时候再去指定类型
+
+1. 泛型变量
+
+   ```ts
+   //泛型变量的使用
+   function identity<T>(arg:T):T{
+       console.log(typeof arg);
+       return arg;
+   }
+   let output1 = identity<string>('myString');
+   let output2 = identity('myString');
+   let output3 = identity<number>(100);
+   let output4 = identity(200)
+   ```
+
+   ```ts
+   //使用集合的泛型
+   function loggingIdentity<T>(arg:Array<T>):Array<T>{
+       console.log(arg.length);
+       return arg;
+   }
+   loggingIdentity([1,2,3])
+   ```
+
+2. 定义泛型接口
+
+   ```ts
+   //泛型接口
+   interface GenericIdentityFn<T> {
+       (arg: T): T;
+   }
+   function identity<T>(arg: T): T {
+       return arg;
+   }
+   let myIdentity: GenericIdentityFn<number> = identity
+   ```
+
+3. 定义泛型类
+
+   ```ts
+   //泛型类
+   class GenericNumber<T>{
+       zeroValue:T;
+       add:(x:T,y:T)=>T;
+   }
+   let myGenericNumber=new GenericNumber<number>();
+   myGenericNumber.zeroValue=0;
+   myGenericNumber.add=function(x,y){return x+y;};
+   console.info(myGenericNumber.add(2,5));
+   
+   let stringNumberic=new GenericNumber<string>();
+   stringNumberic.zeroValue='abc';
+   stringNumberic.add=function(x,y){return `${x}--${y}`};
+   console.info(stringNumberic.add('张三丰','王小明'));
+   ```
 
 ## 类型断言
 
